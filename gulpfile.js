@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var webpack = require('webpack');
 var webpackConfig = require("./webpack.config.js");
+var path = require("path");
 
 gulp.task('PackageCss',function(cb){
 	webpack(webpackConfig, (err, stats) => {
@@ -19,7 +20,7 @@ gulp.task('PackageEditor',["PackageCss"],function(cb){
 
 gulp.task('vue',["PackageEditor"],function(cb){
 	webpack({
-		entry:{withVue:"./vue-ckeditor-sample/withVue.js"},
+		entry:{withVue:path.join(__dirname,"vue-ckeditor-sample/withVue.js")},
 		output:{
 		path:'./vue-ckeditor-sample/output',
 		filename:"[name].js"
